@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak Kami</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap");
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color:#efe1d3;
+      }
+
+      input,
+      button {
+        font-family: sans-serif;
+        font-size: 15px;
+      }
+
+      input,
+      button {
+        border: none;
+        outline: none;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #FFF6ED;
+        box-shadow: 0 2px 16px #14298f26;
+        width: 100%;
+        position: fixed;
+      }
+
+      main {
+        padding-top: 50px;
+      }
+
+      .logo img {
+        height: 60px;
+        position: 20px;
+        padding-left: 20px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li a {
+        display: flex;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+        align-items: center;
+      }
+
+      nav ul li:hover > a {
+        background-color: rgb(182, 180, 180);
+        border-radius: 20px;
+      }
+
+      .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgb(240, 240, 240);
+        padding: 10px;
+        border: 1px solid rgb(204, 204, 204);
+        list-style: none;
+        margin: 0;
+        min-width: 150px;
+      }
+
+      .submenu li {
+        margin-bottom: 10px;
+      }
+
+      .submenu li a {
+        padding: 5px 10px;
+        display: block;
+      }
+
+      .dropdown:hover .submenu {
+        display: block;
+      }
+
+      .header_kanan {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .list_menu {
+        text-decoration: none;
+        color: black;
+        padding-right: 20px;
+      }
+
+      .menu-samping {
+        display: none;
+      }
+
+      .btn_search {
+        background: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: rgb(10, 19, 67);
+      }
+
+      .search {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 19, 67, 0.1);
+        backdrop-filter: blur(24px);
+        padding: 128px 24px 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+
+      .search_tutup {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        font-size: 24px;
+        color: rgb(10, 19, 67);
+        cursor: pointer;
+      }
+
+      .form_search {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+        background-color: rgb(240, 242, 255);
+        box-shadow: 0 8px 32px rgba(10, 19, 67, 0.2);
+        padding-inline: 16px;
+        border-radius: 8px;
+        transform: translateY(-16px);
+        transition: transform 0.4s;
+      }
+
+      .icon_search {
+        font-size: 20px;
+        color: rgb(10, 19, 67);
+      }
+
+      .box_search {
+        width: 100%;
+        padding-block: 16px;
+        background-color: rgb(240, 242, 255);
+        color: rgb(90, 94, 114);
+      }
+
+      .menampilkan_search {
+        opacity: 1;
+        pointer-events: initial;
+      }
+
+      .menampilkan_search .form_search {
+        transform: translateY(0);
+      }
+
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .map {
+        flex: 1;
+        min-width: 250px; /* Jika ingin map tidak terlalu kecil */
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-form {
+        flex: 1;
+        min-width: 350px; /* Jika ingin form tidak terlalu kecil */
+        background-color: #fff;
+        padding: 45px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-form label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .contact-form button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .contact-form button:hover {
+        background-color: #45a049;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding: 40px;
+      }
+
+      @media screen and (min-width: 576px) {
+        .search {
+          padding-top: 160px;
+        }
+
+        .form_search {
+          max-width: 450px;
+          margin-inline: auto;
+        }
+
+        .search_tutup {
+          width: max-content;
+          top: 80px;
+          left: 0;
+          right: 0;
+          margin-inline: auto;
+          font-size: 32px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        nav {
+          display: none;
+          max-width: 480px;
+          margin: auto;
+          background-color: #555;
+          height: 500px;
+          color: white;
+          border-radius: 10px;
+        }
+
+        nav ul {
+          display: block;
+          overflow: hidden;
+        }
+
+        nav ul li {
+          display: block;
+          overflow: hidden;
+        }
+
+        nav ul li a {
+          display: block;
+          overflow: hidden;
+        }
+
+        .nav ul li a {
+          overflow: hidden;
+          background-color: #333;
+          position: relative;
+        }
+
+        .menu-samping {
+          display: block;
+        }
+
+        .tampilan-menu {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 10px;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          width: 30%;
+          height: auto;
+          background-color: rgb(245, 247, 255);
+          box-shadow: 0 2px 16px #14298f26;
+        }
+
+        nav.tampilan-menu {
+          display: block;
+        }
+
+        .submenu {
+          display: none;
+          position: relative;
+          background-color: rgb(240, 240, 240);
+          padding: 10px;
+          margin: 0;
+        }
+
+        nav ul li:hover .submenu {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo"><img src="foto/logo2.png" alt="logo_asteria" /></div>
+      <nav>
+         <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li class="dropdown">
+            <a href="#">Snack box &#9662;</a>
+            <ul class="submenu">
+              <li><a href="pakethematnew.html">Paket Hemat</a></li>
+              <li><a href="paketregulernew.html">Paket Reguler</a></li>
+              <li><a href="paketpremiumnew.html">Paket Premium</a></li>
+            </ul>
+          </li>
+          <li><a href="testimoni.html">Testimoni</a></li>
+          <li><a href="tentangkami.html">Tentang kami</a></li>
+          <li><a href="kontakkami.html">Kontak kami</a></li>
+        </ul>
+      </nav>
+      <div class="header_kanan">
+        <button class="btn_search" id="btn_search">
+          <i class="ri-search-line"></i>
+        </button>
+        <a href="listmenu.html" class="list_menu">List Menu</a>
+        <button class="menu-samping">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="search" id="search">
+      <form id="formPencarian" class="form_search">
+        <i class="ri-search-line icon_search"></i>
+        <input
+          type="search"
+          id="kataKunci"
+          placeholder="Cari nama kue disini"
+          class="box_search"
+        />
+        <button type="button" id="btnCari">Cari</button>
+      </form>
+      <i class="ri-close-line search_tutup" id="search_tutup"></i>
+    </div>
+
+    <main>
+      <h1>Kontak Kami</h1>
+      <div class="contact-container">
+        <div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.077743225741!2d114.60973267446222!3d-3.330970396643809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de42156109f786d%3A0x4866e367cc2cf821!2sJl.%20A.%20Yani%20No.Km.3.5%2C%20Karang%20Mekar%2C%20Kec.%20Banjarmasin%20Tim.%2C%20Kota%20Banjarmasin%2C%20Kalimantan%20Selatan%2070237!5e0!3m2!1sid!2sid!4v1717575560505!5m2!1sid!2sid"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="contact-form">
+          <form>
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required />
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+            <label for="message">Pesan:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Kirim</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script>
+      const menuToggle = document.querySelector(".menu-samping");
+      const nav = document.querySelector("nav");
+      menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("tampilan-menu");
+      });
+
+      const search = document.getElementById("search"),
+        searchBtn = document.getElementById("btn_search"),
+        searchClose = document.getElementById("search_tutup");
+
+      searchBtn.addEventListener("click", () => {
+        search.classList.add("menampilkan_search");
+      });
+
+      searchClose.addEventListener("click", () => {
+        search.classList.remove("menampilkan_search");
+      });
+
+      function pencarian() {
+        let kataKunci = document
+          .getElementById("kataKunci")
+          .value.toLowerCase();
+        let menuItems = document.querySelectorAll(".menu-item");
+
+        for (let menuItem of menuItems) {
+          let description = menuItem.querySelector(".description");
+          let descriptionText = description.textContent.toLowerCase();
+
+          if (descriptionText.includes(kataKunci)) {
+            menuItem.style.display = ""; // menampilkan item jika ada kata kunci yang cocok
+          } else {
+            menuItem.style.display = "none"; // menyembunyikan item jika tidak cocok
+          }
+        }
+      }
+
+      document.getElementById("btnCari").addEventListener("click", function () {
+        pencarian();
+      });
+    </script>
+  </body>
+</html>

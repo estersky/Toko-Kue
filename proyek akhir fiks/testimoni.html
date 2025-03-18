@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"/>
+      <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Tentang Kami</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap");
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      input,
+      button {
+        font-family: sans-serif;
+        font-size: 15px;
+      }
+
+      input,
+      button {
+        border: none;
+        outline: none;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #FFF6ED;
+        box-shadow: 0 2px 16px #14298f26;
+        width: 100%;
+        position: fixed;
+      }
+
+      .logo img {
+        height: 60px;
+        position: 20px;
+        padding-left: 20px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li a {
+        display: flex;
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+        align-items: center;
+      }
+
+      nav ul li:hover > a {
+        background-color: rgb(182, 180, 180);
+        border-radius: 20px;
+      }
+
+      .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgb(240, 240, 240);
+        padding: 10px;
+        border: 1px solid rgb(204, 204, 204);
+        list-style: none;
+        margin: 0;
+        min-width: 150px;
+      }
+
+      .submenu li {
+        margin-bottom: 10px;
+      }
+
+      .submenu li a {
+        padding: 5px 10px;
+        display: block;
+      }
+
+      .dropdown:hover .submenu {
+        display: block;
+      }
+
+      .header_kanan {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .list_menu {
+        text-decoration: none;
+        color: black;
+        padding-right: 20px;
+      }
+
+      .menu-samping {
+       display: none; 
+      }
+
+      .btn_search {
+        background: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: rgb(10, 19, 67);
+      }
+
+      .search {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 19, 67, 0.1);
+        backdrop-filter: blur(24px);
+        padding: 128px 24px 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+
+      .search_tutup {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        font-size: 24px;
+        color: rgb(10, 19, 67);
+        cursor: pointer;
+      }
+
+      .form_search {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+        background-color: rgb(240, 242, 255);
+        box-shadow: 0 8px 32px rgba(10, 19, 67, 0.2);
+        padding-inline: 16px;
+        border-radius: 8px;
+        transform: translateY(-16px);
+        transition: transform 0.4s;
+      }
+
+      .icon_search {
+        font-size: 20px;
+        color: rgb(10, 19, 67);
+      }
+
+      .box_search {
+        width: 100%;
+        padding-block: 16px;
+        background-color: rgb(240, 242, 255);
+        color: rgb(90, 94, 114);
+      }
+
+      .menampilkan_search {
+        opacity: 1;
+        pointer-events: initial;
+      }
+
+      .menampilkan_search .form_search {
+        transform: translateY(0);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      .container {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color:#efe1d3;
+      }
+      .testimonial {
+        position: relative;
+        max-width: 900px;
+        width: 100%;
+        padding: 50px 0;
+        overflow: hidden;
+      }
+      .testimonial .image {
+        height: 170px;
+        width: 170px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .testimonial .slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        row-gap: 30px;
+        height: 100%;
+        width: 100%;
+      }
+      .slide p {
+        text-align: justify;
+        padding: 0 160px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333;
+      }
+      .slide .quote-icon {
+        font-size: 30px;
+        color: #4070f4;
+      }
+      .slide .details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .details .name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+      }
+      .details .job {
+        font-size: 12px;
+        font-weight: 400;
+        color: #333;
+      }
+      /* swiper button css */
+      .nav-btn {
+        height: 40px;
+        width: 40px;
+        border-radius: 50px;
+        transition: 0.2s;
+      }
+      .nav-btn:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+      .nav-btn::after,
+      .nav-btn::before {
+        font-size: 20px;
+        color: #666565;
+      }
+      .swiper-pagination-bullet {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      .swiper-pagination-bullet-active {
+        background-color: #4070f4;
+      }
+
+      @media screen and (min-width: 576px) {
+        .search {
+          padding-top: 160px;
+        }
+
+        .form_search {
+          max-width: 450px;
+          margin-inline: auto;
+        }
+
+        .search_tutup {
+          width: max-content;
+          top: 80px;
+          left: 0;
+          right: 0;
+          margin-inline: auto;
+          font-size: 32px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .slide p {
+          padding: 0 20px;
+        }
+        .nav-btn {
+          display: none;
+        }
+    
+        nav {
+          display: none;
+          max-width: 480px;
+          margin: auto;
+          background-color: #555;
+          height: 500px;
+          color: white;
+          border-radius: 10px;
+        }
+        
+        nav ul {
+          display: block;
+          overflow: hidden;
+        }
+        
+        nav ul li {
+          display: block;
+          overflow: hidden;
+        }
+        
+        nav ul li a {
+          display: block;
+          overflow: hidden;
+        }
+
+        .nav ul li a{
+          overflow: hidden;
+          background-color: #333;
+          position: relative;
+        }
+
+        .menu-samping {
+          display: block;
+        }
+
+        .tampilan-menu {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 10px;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          width: 30%;
+          height: auto;
+          background-color: rgb(245, 247, 255);
+          box-shadow: 0 2px 16px #14298f26;
+        }
+
+        nav.tampilan-menu {
+          display: block;
+        }
+
+        .submenu {
+          display: none;
+          position: relative;
+          background-color: rgb(240, 240, 240);
+          padding: 10px;
+          margin: 0;
+        }
+
+        nav ul li:hover .submenu {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo"><img src="foto/logo2.png" alt="logo_asteria" /></div>
+      <nav>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li class="dropdown">
+            <a href="#">Snack box &#9662;</a>
+           <ul class="submenu">
+              <li><a href="pakethematnew.html">Paket Hemat</a></li>
+              <li><a href="paketregulernew.html">Paket Reguler</a></li>
+              <li><a href="paketpremiumnew.html">Paket Premium</a></li>
+            </ul>
+          </li>
+          <li><a href="testimoni.html">Testimoni</a></li>
+          <li><a href="tentangkami.html">Tentang kami</a></li>
+          <li><a href="kontakkami.html">Kontak kami</a></li>
+        </ul>
+      </nav>
+      <div class="header_kanan">
+        <button class="btn_search" id="btn_search">
+          <i class="ri-search-line"></i>
+        </button>
+        <a href="listmenu.html" class="list_menu">List Menu</a>
+        <button class="menu-samping">
+          <i class="ri-menu-line"></i> </button>
+      </div>
+    </header>
+
+    <div class="search" id="search">
+      <form id="formPencarian" class="form_search">
+        <i class="ri-search-line icon_search"></i>
+        <input
+          type="search"
+          id="kataKunci"
+          placeholder="Cari nama kue disini"
+          class="box_search"
+        />
+        <button type="button" id="btnCari">Cari</button>
+      </form>
+      <i class="ri-close-line search_tutup" id="search_tutup"></i>
+    </div> 
+    <section class="container">
+      <div class="testimonial mySwiper">
+        <div class="testi-content swiper-wrapper">
+          <div class="slide swiper-slide">
+            <img src="foto/ais.jpg" class="image" />
+            <p>
+              Kue dari Wadai Asteria benar-benar luar biasa! Saya memesan untuk
+              acara keluarga dan semua tamu memuji rasa dan kualitasnya. Selain
+              itu, kemasannya sangat rapi dan menarik. Terima kasih banyak.
+            </p>
+            <i class="bx bxs-quote-alt-left quote-icon"></i>
+            <div class="details">
+              <span class="name">Siti Aisyah</span>
+              <span class="job">Influencer</span>
+            </div>
+          </div>
+          <div class="slide swiper-slide">
+            <img src="foto/manda.jpg" class="image" />
+            <p>
+              Wadai Asteria memiliki berbagai pilihan kue yang sulit ditemukan
+              di tempat lain. Rasa kuenya benar-benar otentik dan harganya
+              sangat bersaing. Sangat puas dengan pembelian saya dan akan
+              kembali lagi untuk memesan lebih banyak.
+            </p>
+            <i class="bx bxs-quote-alt-left quote-icon"></i>
+            <div class="details">
+              <span class="name">Amanda Putri</span>
+              <span class="job">Graphic Designer</span>
+            </div>
+          </div>
+          <div class="slide swiper-slide">
+            <img src="foto/rahma.jpg" class="image" />
+            <p>
+              Saya memesan beberapa jenis kue untuk acara kantor dan semua orang
+              sangat menyukainya. Kualitasnya sangat baik dan rasanya luar
+              biasa. Pengiriman juga tepat waktu. Pasti akan merekomendasikan
+              Wadai Asteria kepada teman-teman saya!
+            </p>
+            <i class="bx bxs-quote-alt-left quote-icon"></i>
+            <div class="details">
+              <span class="name">Rahma Fauziah Hayani</span>
+              <span class="job">Desain Grafis</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-button-next nav-btn"></div>
+        <div class="swiper-button-prev nav-btn"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      const menuToggle = document.querySelector(".menu-samping");
+      const nav = document.querySelector("nav");
+      menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("tampilan-menu");
+      });
+
+      const search = document.getElementById("search"),
+        searchBtn = document.getElementById("btn_search"),
+        searchClose = document.getElementById("search_tutup");
+
+      searchBtn.addEventListener("click", () => {
+        search.classList.add("menampilkan_search");
+      });
+
+      searchClose.addEventListener("click", () => {
+        search.classList.remove("menampilkan_search");
+      });
+      
+      function pencarian() {
+        let kataKunci = document
+          .getElementById("kataKunci")
+          .value.toLowerCase(); 
+        let menuItems = document.querySelectorAll(".menu-item"); 
+
+        for (let menuItem of menuItems) {
+          let description = menuItem.querySelector(".description"); 
+          let descriptionText = description.textContent.toLowerCase(); 
+
+          if (descriptionText.includes(kataKunci)) {
+            menuItem.style.display = ""; // menampilkan item jika ada kata kunci yang cocok
+          } else {
+            menuItem.style.display = "none"; // menyembunyikan item jika tidak cocok
+          }
+        }
+      }
+
+      document.getElementById("btnCari").addEventListener("click", function () {
+      pencarian();
+      });
+
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        grabCursor: true,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+  </body>
+</html>

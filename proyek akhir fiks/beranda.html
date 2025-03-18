@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
+    <title>Beranda</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap");
+
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      body,
+      input,
+      button {
+        font-family: sans-serif;
+        font-size: 15px;
+      }
+
+      body {
+        background-color: rgb(245, 247, 255);
+        color: rgb(90, 94, 114);
+      }
+
+      input,
+      button {
+        border: none;
+        outline: none;
+      }
+
+
+      .logo img {
+        height: 60px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      nav ul li:hover > a {
+        background-color: rgb(182, 180, 180);
+        border-radius: 20px;
+      }
+
+      .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgb(240, 240, 240);
+        padding: 10px;
+        border: 1px solid rgb(204, 204, 204);
+        list-style: none;
+        margin: 0;
+        min-width: 150px;
+      }
+
+      .submenu li {
+        margin-bottom: 10px;
+      }
+
+      .submenu li a {
+        padding: 5px 10px;
+        display: block;
+      }
+
+      .dropdown:hover .submenu {
+        display: block;
+      }
+
+      .header_kanan {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .list_menu {
+        text-decoration: none;
+        color: black;
+      }
+
+      .btn_search {
+        background: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: rgb(10, 19, 67);
+      }
+
+      .menu-samping {
+       display: none; 
+      }
+
+      .search {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 19, 67, 0.1);
+        backdrop-filter: blur(24px);
+        padding: 128px 24px 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+
+      .search_tutup {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        font-size: 24px;
+        color: rgb(10, 19, 67);
+        cursor: pointer;
+      }
+
+      .form_search {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+        background-color: rgb(240, 242, 255);
+        box-shadow: 0 8px 32px rgba(10, 19, 67, 0.2);
+        padding-inline: 16px;
+        border-radius: 8px;
+        transform: translateY(-16px);
+        transition: transform 0.4s;
+
+      }
+
+      .icon_search {
+        font-size: 20px;
+        color: rgb(10, 19, 67);
+      }
+
+      .box_search {
+        width: 100%;
+        padding-block: 16px;
+        background-color: rgb(240, 242, 255);
+        color: rgb(90, 94, 114);
+      }
+
+      .menampilkan_search {
+        opacity: 1;
+        pointer-events: initial;
+      }
+
+      .menampilkan_search .form_search {
+        transform: translateY(0);
+      }
+
+      @media screen and (min-width: 576px) {
+        .search {
+          padding-top: 160px;
+        }
+
+        .form_search {
+          max-width: 450px;
+          margin-inline: auto;
+        }
+
+        .search_tutup {
+          width: max-content;
+          top: 80px;
+          left: 0;
+          right: 0;
+          margin-inline: auto;
+          font-size: 32px;
+        }
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slider {
+        width: 100vw; /* Mengisi lebar viewport */
+        height: 100vh; /* Mengisi tinggi viewport */
+        overflow: hidden;
+      }
+
+      .slide {
+        display: none;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Untuk memastikan gambar mengisi seluruh area */
+      }
+
+      .slide.active {
+        display: block;
+      }
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --black: #1b1722;
+        --white: #f0f0f0;
+        --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+      * {
+        font-family: "Quicksand", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        transition: 0.2s linear;
+      }
+      html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-padding-top: 7rem;
+        scroll-behavior: smooth;
+      }
+      .header {
+        height: 70px;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: #FFF6ED;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        padding: 1.4rem 7%;
+        box-shadow: 0 2px 16px #14298f26;
+      }
+      .home {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: url(foto/cb2.png) no-repeat;
+        background-size: cover;
+      }
+      .home .homeContent {
+        width: 50%;
+        float: left;
+        text-align: center;
+        padding-top: 70px;
+      }
+      .home .homeContent h2 {
+        font-size: 7rem;
+        font-weight: bolder;
+        margin-bottom: 2rem;
+        line-height: 7rem;
+        color: var(--black);
+        text-shadow: var(--box-shadow);
+      }
+      .home .homeContent p {
+        font-size: 1.8rem;
+        line-height: 2;
+        margin-bottom: 2rem;
+      }
+      .home-btn {
+        height: 3rem;
+        text-align: center;
+        padding: 40px;
+      }
+      .home-btn button {
+        font-size: 1.8rem;
+        background-color: var(--black);
+        color: var(--white);
+        border-radius: 2rem;
+        padding: 0.7rem 2.4rem;
+        cursor: pointer;
+      }
+      .home-btn button:hover {
+        font-size: 2rem;
+      }
+      .beranda1 {
+        display: flex;
+        justify-content: center; /* Mengatur konten secara horizontal di tengah */
+        align-items: center; /* Mengatur konten secara vertikal di tengah */
+        background-color: #FFF6ED;
+        background-size: cover; /* Menyesuaikan ukuran gambar agar mengisi seluruh area background */
+        background-position: center;
+        min-height: 100vh;
+        /* Memastikan gambar berada di tengah */
+      }
+
+      .box {
+        background-color: none; /* Menambahkan latar belakang semi-transparan untuk membedakan teks */
+        margin: 40px; /* Mengatur item dalam box menjadi satu kolom */
+      }
+
+      .box p {
+        font-size: 1.8rem;
+        line-height: 2;
+        margin-right: 60px;
+        text-align: justify;
+      }
+
+      .box img {
+        margin: auto;
+        border-radius: 30px 50%;
+        width: 380px;
+        display: block; /* Mengatur agar gambar berada di tengah */
+      }
+
+      section {
+        padding: 2rem 7%;
+      }
+      .heading {
+        text-align: center;
+        font-size: 2.6rem;
+        margin-bottom: 3rem;
+        color: var(--black);
+      }
+
+      .footer {
+        background-color:#917d6a;
+        font-size: 1.7rem;
+        line-height: 1.3;
+        color: var(--white);
+        text-align: justify;
+      }
+      .footer .box p {
+        font-size: 1.4rem;
+        text-align: justify; /* Menjaga teks rata kiri-kanan */
+        line-height: 1.5; /* Mengatur tinggi baris untuk keterbacaan */
+        /* Batasi lebar maksimum paragraf */
+      }
+
+      .box-container { 
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+        height: 210px;
+        margin-left: 60px;
+      }
+
+      .box a {
+        display: block;
+        color: var(--white);
+        padding: 1rem 0;
+      }
+
+      .box a:hover i {
+        padding-right: 2rem;
+      }
+      .footer .credit {
+        font-size: 1.2rem;
+        margin-top: 7rem;
+        padding-bottom: 2rem;
+        color: var(--white);
+        text-align: center;
+      }
+      @media (max-width: 991px) {
+        html {
+          font-size: 55%;
+        }
+        .header {
+          padding: 1.3rem 3rem;
+        }
+        .home .homeContent {
+          margin-left: 0;
+          width: 80%;
+        }
+      }
+      @media (max-width: 768px) {
+        #menu-bar {
+          display: inline-block;
+        }
+        .header .navbar {
+          position: absolute;
+          top: 100%;
+          right: -100%;
+          width: 25rem;
+          background-color: var(--white);
+          height: 80vh;
+        }
+        .header .navbar.active {
+          right: 0;
+        }
+        .header .navbar a {
+          display: block;
+          font-size: 2rem;
+          color: black;
+          margin: 1.5rem;
+        }
+
+        .home .homeContent {
+          margin-left: 0;
+          width: 90%;
+        }
+
+        nav {
+          display: none;
+          max-width: 480px;
+          margin: auto;
+          background-color: #555;
+          height: 500px;
+          color: white;
+          border-radius: 10px;
+        }
+        
+        nav ul {
+          display: block;
+          overflow: hidden;
+        }
+        
+        nav ul li {
+          display: block;
+          overflow: hidden;
+        }
+        
+        nav ul li a {
+          display: block;
+          overflow: hidden;
+        }
+
+        .nav ul li a{
+          overflow: hidden;
+          background-color: #333;
+          position: relative;
+        }
+
+        .menu-samping {
+          display: block;
+        }
+
+        .tampilan-menu {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 10px;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          width: 30%;
+          height: auto;
+          background-color: rgb(245, 247, 255);
+          box-shadow: 0 2px 16px #14298f26;
+        }
+
+        nav.tampilan-menu {
+          display: block;
+        }
+
+        .submenu {
+          display: none;
+          position: relative;
+          background-color: rgb(240, 240, 240);
+          padding: 10px;
+          margin: 0;
+        }
+
+        nav ul li:hover .submenu {
+          display: block;
+        }
+
+        .footer .box-container {
+          grid-template-columns: 1fr;
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        html {
+          font-size: 50%;
+        }
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo"><img src="foto/logo2.png" alt="logo_asteria" /></div>
+      <nav>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li class="dropdown">
+            <a href="#">Snack box &#9662;</a>
+            <ul class="submenu">
+              <li><a href="pakethematnew.html">Paket Hemat</a></li>
+              <li><a href="paketregulernew.html">Paket Reguler</a></li>
+              <li><a href="paketpremiumnew.html">Paket Premium</a></li>
+            </ul>
+          </li>
+          <li><a href="testimoni.html">Testimoni</a></li>
+          <li><a href="tentangkami.html">Tentang kami</a></li>
+          <li><a href="kontakkami.html">Kontak kami</a></li>
+        </ul>
+      </nav>
+      <div class="header_kanan">
+        <button class="btn_search" id="btn_search">
+          <i class="ri-search-line"></i>
+        </button>
+        <a href="listmenu.html" class="list_menu">List Menu</a>
+        <button class="menu-samping">
+          <i class="ri-menu-line"></i> </button>
+      </div>
+    </header>
+    <div class="search" id="search">
+      <form action="" class="form_search">
+        <i class="ri-search-line icon_search"></i>
+        <input
+          type="search"
+          placeholder="Cari nama kue disini"
+          class="box_search"
+        />
+      </form>
+      <i class="ri-close-line search_tutup" id="search_tutup"></i>
+    </div>
+    <section class="home" id="home">
+      <div class="homeContent">
+        <h2>Selamat Datang di Toko
+            Kue Asteria
+        </h2>
+        <p>
+         Nikmati Keunikan rasa kue Khas Kalimantan Selatan
+        </p>
+        <div class="home-btn">
+          <button onclick="scrollToSection('beranda1')">Lihat Beranda</button>
+        </div>
+      </div>
+    </section>
+    <section class="beranda1" id="beranda1">
+      <div class="box">
+        <p>Apakah Anda rindu dengan cita rasa autentik kue tradisional 
+          dari Kalimantan Selatan? Atau mungkin Anda ingin mencoba 
+          sesuatu yang baru dan unik? Di KueKalsel.com, kami menghadirkan 
+          beragam kue khas Kalimantan Selatan yang siap memanjakan lidah Anda.
+</p>
+        <div class="home-btn">
+          <button onclick="scrollToSection('home')">Kembali</button>
+        </div>
+      </div>
+      <div class="box">
+        <img src="foto/ipau.jpe" alt="foto kue ipau">
+      </div>
+      </div>
+    </section>
+      <footer class="footer" id="contact">
+        <div class="box-container">
+            <div class="box">
+            <p>Toko Asteria adalah toko kue yang berdiri sejak 2023 di Banjarmasin, banyak menyediakan berbagai macam jenis kue khas Kalimantan Selatan yang
+            berkualitas dengan harga murah meriah.</p>
+            </div>
+            <div class="box">
+                <h3>Navigasi</h3>
+                <a href="beranda.html"> <i class="fas fa-arrow-right"></i>Beranda</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Snack Box</a>
+                <a href="testimoni.html"> <i class="fas fa-arrow-right"></i>Testimoni</a>
+                <a href="tentangkami.html"> <i class="fas fa-arrow-right"></i>Tentang kami</a>
+                <a href="kontakkami.html"> <i class="fas fa-arrow-right"></i>Kontak kami</a>
+            </div>
+            <div class="box">
+                <h3>Snack Box</h3>
+                <a href="pakethematnew.html"> <i class="fas fa-arrow-right"></i>Paket Hemat</a>
+                <a href="paketregulernew.html"> <i class="fas fa-arrow-right"></i>Paket Reguler</a>
+                <a href="paketpremiumnew.html"> <i class="fas fa-arrow-right"></i>Paket Premium</a>
+            </div>
+            <div class="box">
+                <h3>Hubungi Kami</h3>
+                 <a href="https://wa.me/6285822510560"><i class="ri-whatsapp-line"></i>+6285822510560</a>
+                <a href="#"><i class="ri-instagram-line"></i> @asteria</a>
+                <a href="#"><i class="ri-facebook-circle-line"></i> @asteria</a>
+                <a href="#"><i class="ri-twitter-line"></i> @asteria</a>
+            </div>
+        </div>
+        <div class="credit">
+            created by <span>Asteria</span> |all rights reserved ! 
+        </div>
+    </footer>
+    <script>
+      const menuToggle = document.querySelector(".menu-samping");
+      const nav = document.querySelector("nav");
+      menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("tampilan-menu");
+      });
+
+      const search = document.getElementById("search"),
+        searchBtn = document.getElementById("btn_search"),
+        searchClose = document.getElementById("search_tutup");
+      searchBtn.addEventListener("click", () => {
+        search.classList.add("menampilkan_search");
+      });
+      searchClose.addEventListener("click", () => {
+        search.classList.remove("menampilkan_search");
+      });
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".slide");
+      function showSlides() {
+        slides.forEach((slide) => {
+          slide.style.display = "none";
+        });
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+      }
+      showSlides();
+      function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Optional: Scrolling otomatis setiap beberapa detik (mirip slideshow)
+      let currentSectionIndex = 0;
+      const sections = document.querySelectorAll('section');
+  
+      function autoScrollSections() {
+        currentSectionIndex = (currentSectionIndex + 1) % sections.length;
+        sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+      }
+  
+      setInterval(autoScrollSections, 5000); // Ganti section setiap 5 detik
+   </script>
+  </body>
+</html>

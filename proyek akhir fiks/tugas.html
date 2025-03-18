@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: rgb(5, 64, 83);
+        font-size: 12px;
+      }
+      p {
+        position: absolute;
+        top: 360px;
+        left: 133px;
+        color: #3e0303;
+      }
+      h1 {
+        color: rgb(75, 10, 10);
+      }
+      h4 {
+        color: #3e0303;
+        top: 20px;
+        left: 20px;
+      }
+      #box {
+        width: 800px;
+        height: 600px;
+        background-color: rgb(245, 242, 245);
+        border-radius: 0% 0% 50% 0%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+      }
+
+      .item2 {
+        grid-area: main;
+        background-color: rgb(225, 181, 223);
+      }
+
+      .item4 {
+        grid-area: sidebar;
+        background-color: rgb(225, 181, 223);
+        text-align: center;
+      }
+
+      .grid-container {
+        display: grid;
+        margin: 0 auto;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr 3fr 1fr 1fr);
+        grid-template-areas:
+          "main  main    sidebar"
+          "main  main    sidebar";
+      }
+      .item4 img {
+        width: 430px;
+        height: 550px;
+      }
+      .topnav {
+        overflow: hidden;
+        background-color: none;
+        position: absolute;
+        top: 20px;
+        right: 40%;
+      }
+      .topnav a {
+        float: left;
+        display: block;
+        color: #241212;
+        text-align: left;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      .topnav a:hover {
+        border-bottom: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topnav">
+      <a href="belanja.html">Belanja</a>
+      <a href="#">Rekomendasi Skincare</a>
+      <a href="#">Review</a>
+    </header>
+    <div class="grid-container">
+      <div class="item2">
+        <div id="box">
+          <br />
+          <h1 style="font-size: 50px">
+            Temukan Berbagai Resep <br />Makanan Disini!
+          </h1>
+          <br />
+
+          <p>
+            Hanya dengan memilih gambar, anda bisa menemukan mulai dari <br />
+            bahan dan takaran, cara pembuatan, sampai alat yang diperlukan.
+          </p>
+        </div>
+      </div>
+      <div class="item4">
+        <img src="resep.png" />
+      </div>
+    </div>
+  </body>
+</html>
